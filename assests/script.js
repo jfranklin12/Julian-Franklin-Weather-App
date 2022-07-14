@@ -1,16 +1,41 @@
-fetch(http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid={API key})
+var cityNameEl = document.getElementById("cityName");
+var searchButtonEl = document.getElementById("searchButton");
 
-fetch(https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key})
+
+searchButtonEl.addEventListener('click', function(){
+    var input = cityNameEl.value;
+    console.log(input);
+
+    var userSearch = {
+        city: cityNameEl.value.trim()
+    }
+    localStorage.setItem("City Search", JSON.stringify(userSearch))
+    
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + userSearch + "&limit=1&appid=72ee85d5414d2d017cb185582d883b57")
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data){
+        var lat = data.filter(function(locLat){
+            return locLat.
+        })
+//     })
+}
+// fetch(https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={72ee85d5414d2d017cb185582d883b57})
+
+
+
+)
 
 
 
 // Variable to get search history as an array
 // Get Search History Function
-var results = JSON.parse(localStorage.getItem("searchHistory")) || []
+// var results = JSON.parse(localStorage.getItem("searchHistory")) || []
 // loop through and display results
 
 // This is how you save a new item // Create Array
 // Save Search History Function
-var results = JSON.parse(localStorage.getItem("searchHistory")) || []
-results.push(item)
-localStorage.setItem("searchHistory", JSON.stringify(results))
+// var results = JSON.parse(localStorage.getItem("searchHistory")) || []
+// results.push(item)
+// localStorage.setItem("searchHistory", JSON.stringify(results))
