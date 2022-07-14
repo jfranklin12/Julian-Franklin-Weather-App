@@ -6,9 +6,8 @@ searchButtonEl.addEventListener('click', function(){
     var input = cityNameEl.value;
     console.log(input);
 
-    var userSearch = {
-        city: cityNameEl.value.trim()
-    }
+    var userSearch = cityNameEl.value.trim()
+
     localStorage.setItem("City Search", JSON.stringify(userSearch))
     
     fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + userSearch + "&limit=1&appid=72ee85d5414d2d017cb185582d883b57")
@@ -16,16 +15,19 @@ searchButtonEl.addEventListener('click', function(){
         return res.json();
     })
     .then(function(data){
-        var lat = data.filter(function(locLat){
-            return locLat.
-        })
-//     })
-}
-// fetch(https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={72ee85d5414d2d017cb185582d883b57})
+        console.log(data);
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        console.log(lat);
+        console.log(lon);
+         
+
+        fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=72ee85d5414d2d017cb185582d883b57")
 
 
 
-)
+    })
+})
 
 
 
