@@ -23,6 +23,13 @@ searchButtonEl.addEventListener('click', function(){
          
 
         fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=72ee85d5414d2d017cb185582d883b57")
+        .then(function(res){
+            return res.json();
+        })
+        .then(function(data){
+            console.log(data);
+            var results =
+        })
 
 
 
