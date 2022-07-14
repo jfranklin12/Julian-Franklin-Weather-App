@@ -1,42 +1,52 @@
 var cityNameEl = document.getElementById("cityName");
 var searchButtonEl = document.getElementById("searchButton");
 
+var input = cityNameEl.value;
+console.log(input);
 
-searchButtonEl.addEventListener('click', function(){
-    var input = cityNameEl.value;
-    console.log(input);
 
-    var userSearch = cityNameEl.value.trim()
 
-    localStorage.setItem("City Search", JSON.stringify(userSearch))
-    
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + userSearch + "&limit=1&appid=72ee85d5414d2d017cb185582d883b57")
-    .then(function(res){
-        return res.json();
-    })
-    .then(function(data){
-        console.log(data);
-        var lat = data[0].lat;
-        var lon = data[0].lon;
-        console.log(lat);
-        console.log(lon);
-         
+searchButtonEl.addEventListener('click', getWeather)
 
-        fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=72ee85d5414d2d017cb185582d883b57")
-        .then(function(res){
+function getWeather() {
+    var userSearch = cityNameEl.value.trim();
+
+    fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + userSearch + "&limit=1&appid=72ee85d5414d2d017cb185582d883b57")
+        .then(function (res) {
             return res.json();
         })
-        .then(function(data){
+        .then(function (data) {
             console.log(data);
-            var results =
+            var lat = data[0].lat;
+            var lon = data[0].lon;
+            console.log(lat);
+            console.log(lon);
+
+            var cityName = data[0].name;
+
+            weatherToScreen(lat, lon, cityName)
+          
         })
+}
 
-
-
+function weatherToScreen(lat, lon, cityName) {
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=72ee85d5414d2d017cb185582d883b57&units=imperial")
+    .then(function (res) {
+        return res.json();
     })
-})
+    .then(function (data) {
+        console.log(data);
+
+        data.daily.forEach(function weatherLoop(weather, i) {
+            document.querySelector("#city" + i).textContent = cityName + " (" + new Date(weather.dt*1000).toLocaleDateString() + ")"
+            document.querySelector("#temp" + i).textContent = "Temp: " + weather.temp.day + "*F";
+        });
+    })
+}
 
 
+
+function saveResults()
 
 // Variable to get search history as an array
 // Get Search History Function
@@ -48,3 +58,5 @@ searchButtonEl.addEventListener('click', function(){
 // var results = JSON.parse(localStorage.getItem("searchHistory")) || []
 // results.push(item)
 // localStorage.setItem("searchHistory", JSON.stringify(results))
+
+// create li, append screen using loop 
