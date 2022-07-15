@@ -6,7 +6,7 @@ console.log(input);
 
 
 
-searchButtonEl.addEventListener('click', getWeather)
+searchButtonEl.addEventListener('click', getWeather, saveCity)
 
 function getWeather() {
     var userSearch = cityNameEl.value.trim();
@@ -39,6 +39,7 @@ function weatherToScreen(lat, lon, cityName) {
 
             data.daily.forEach(function weatherLoop(weather, i) {
                 document.querySelector("#city" + i).textContent = cityName + " (" + new Date(weather.dt * 1000).toLocaleDateString() + ")"
+                document.querySelector("#icon" + i).src = "https://openweathermap.org/img/w/" + weather.weather[0].icon + ".png"
                 document.querySelector("#temp" + i).textContent = "Temp: " + weather.temp.day + "°F";
                 document.querySelector("#wind" + i).textContent = "Wind: " + weather.wind_speed;
                 document.querySelector("#humidity" + i).textContent = "Humidity: " + weather.humidity;
@@ -53,18 +54,25 @@ function weatherToScreen(lat, lon, cityName) {
 
 // Variable to get search history as an array
 // Get Search History Function
-var results = JSON.parse(localStorage.getItem("searchHistory", input)) || []
+// function getCity(){
+// var results = JSON.parse(localStorage.getItem("searchHistory", input)) || [];
+// saveCity(results)
+// }
 // loop through and display results
 
 // This is how you save a new item // Create Array
 // Save Search History Function
-var resultsShow = JSON.parse(localStorage.getItem("searchHistory", input)) || []
-results.push(resultsShow)
-localStorage.setItem("searchHistory", JSON.stringify(results))
-
-function showResults() {
-    var show = document.createElement("li");
-    var textshow = document.createTextShow(input);
-    show.appendChild(textshow);
-    document.getElementById("#results").appendChild(show);
+function saveCity() {
+    localStorage.setItem("searchHistory", JSON.stringify(input));
+    console.log(input)
 }
+
+// var resultsShow = JSON.parse(localStorage.getItem("searchHistory", input)) || [];
+// results.push(resultsShow);
+
+// function showResults() {
+//     var cityList = document.createElement("li");
+//     var textshow = document.createTextShow(input);
+//     show.appendChild(textshow);
+//     document.getElementById("#results").appendChild(cityList);
+// }
