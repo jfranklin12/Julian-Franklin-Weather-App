@@ -58,8 +58,8 @@ var results = JSON.parse(localStorage.getItem("searchHistory", input)) || []
 
 // This is how you save a new item // Create Array
 // Save Search History Function
-var results = JSON.parse(localStorage.getItem("searchHistory", input)) || []
-results.push(results)
+var resultsShow = JSON.parse(localStorage.getItem("searchHistory", input)) || []
+results.push(resultsShow)
 localStorage.setItem("searchHistory", JSON.stringify(results))
 
 function showResults() {
