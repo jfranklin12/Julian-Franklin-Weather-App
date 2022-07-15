@@ -25,26 +25,26 @@ function getWeather() {
             var cityName = data[0].name;
 
             weatherToScreen(lat, lon, cityName)
-          
+
         })
 }
 
 function weatherToScreen(lat, lon, cityName) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=72ee85d5414d2d017cb185582d883b57&units=imperial")
-    .then(function (res) {
-        return res.json();
-    })
-    .then(function (data) {
-        console.log(data);
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (data) {
+            console.log(data);
 
-        data.daily.forEach(function weatherLoop(weather, i) {
-            document.querySelector("#city" + i).textContent = cityName + " (" + new Date(weather.dt*1000).toLocaleDateString() + ")"
-            document.querySelector("#temp" + i).textContent = "Temp: " + weather.temp.day + "°F";
-            document.querySelector("#wind" + i).textContent = "Wind: " + weather.wind_speed;
-            document.querySelector("#humidity" + i).textContent = "Humidity: " + weather.humidity;
-            document.querySelector("#uv" + i).textContent = "UV Index: " + weather.uvi;
-        });
-    })
+            data.daily.forEach(function weatherLoop(weather, i) {
+                document.querySelector("#city" + i).textContent = cityName + " (" + new Date(weather.dt * 1000).toLocaleDateString() + ")"
+                document.querySelector("#temp" + i).textContent = "Temp: " + weather.temp.day + "°F";
+                document.querySelector("#wind" + i).textContent = "Wind: " + weather.wind_speed;
+                document.querySelector("#humidity" + i).textContent = "Humidity: " + weather.humidity;
+                document.querySelector("#uv" + i).textContent = "UV Index: " + weather.uvi;
+            });
+        })
 }
 
 
@@ -53,14 +53,18 @@ function weatherToScreen(lat, lon, cityName) {
 
 // Variable to get search history as an array
 // Get Search History Function
-var results = JSON.parse(localStorage.getItem("searchHistory")) || []
+var results = JSON.parse(localStorage.getItem("searchHistory", input)) || []
 // loop through and display results
 
 // This is how you save a new item // Create Array
 // Save Search History Function
-var results = JSON.parse(localStorage.getItem("searchHistory")) || []
-results.push(item)
+var results = JSON.parse(localStorage.getItem("searchHistory", input)) || []
+results.push(results)
 localStorage.setItem("searchHistory", JSON.stringify(results))
 
-appendChild.
-// create li, append screen using loop 
+function showResults() {
+    var show = document.createElement("li");
+    var textshow = document.createTextShow(input);
+    show.appendChild(textshow);
+    document.getElementById("#results").appendChild(show);
+}
