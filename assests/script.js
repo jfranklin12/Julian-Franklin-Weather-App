@@ -39,24 +39,28 @@ function weatherToScreen(lat, lon, cityName) {
 
         data.daily.forEach(function weatherLoop(weather, i) {
             document.querySelector("#city" + i).textContent = cityName + " (" + new Date(weather.dt*1000).toLocaleDateString() + ")"
-            document.querySelector("#temp" + i).textContent = "Temp: " + weather.temp.day + "*F";
+            document.querySelector("#temp" + i).textContent = "Temp: " + weather.temp.day + "°F";
+            document.querySelector("#wind" + i).textContent = "Wind: " + weather.wind_speed;
+            document.querySelector("#humidity" + i).textContent = "Humidity: " + weather.humidity;
+            document.querySelector("#uv" + i).textContent = "UV Index: " + weather.uvi;
         });
     })
 }
 
 
 
-function saveResults()
+// function saveResults()
 
 // Variable to get search history as an array
 // Get Search History Function
-// var results = JSON.parse(localStorage.getItem("searchHistory")) || []
+var results = JSON.parse(localStorage.getItem("searchHistory")) || []
 // loop through and display results
 
 // This is how you save a new item // Create Array
 // Save Search History Function
-// var results = JSON.parse(localStorage.getItem("searchHistory")) || []
-// results.push(item)
-// localStorage.setItem("searchHistory", JSON.stringify(results))
+var results = JSON.parse(localStorage.getItem("searchHistory")) || []
+results.push(item)
+localStorage.setItem("searchHistory", JSON.stringify(results))
 
+appendChild.
 // create li, append screen using loop 
