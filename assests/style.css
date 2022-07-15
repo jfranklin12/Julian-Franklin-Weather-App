@@ -1,0 +1,12 @@
+/* navbar format */
+.navbar {
+    background-color: rgb(6, 6, 119);
+}
+.web-title {
+    font-size:xx-large;
+    color:aliceblue;
+}
+/* car color */
+.card-body {
+    background-color: rgb(160, 213, 238);
+}

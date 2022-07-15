@@ -13,23 +13,28 @@
 
 <body>
   <!-- Header for the Website -->
-  <nav class="navbar navbar-light bg-primary">
-    <span class="navbar-brand mb-0 h1 text-light">Weather Dashboard</span>
+  <nav class="navbar navbar-light">
+    <span class="web-title">Weather Dashboard</span>
   </nav>
   <!-- Main content area -->
-  <div class="container-fluid mt-4">
+  <div id="back" class="container-fluid mt-4">
+    <!-- Top row with search for a city and main city card -->
     <div class="row">
+      <!-- Search for a city card -->
       <div class="col-2">
         <div class="card">
           <div class="card-body">
             <h3 class="card-title">Search for a city</h3>
             <input id="cityName" type="text" class="form-control" placeholder="City Name" aria-label="Username"
               aria-describedby="basic-addon1">
-            <button id="searchButton" type="button" class="btn btn-info">Search</button>
+              <br>
+            <button id="searchButton" type="button" class="btn btn-primary">Search</button>
+            <br><br>
             <p id="results" class="card-text">Results</p>
           </div>
         </div>
       </div>
+      <!-- main weather card -->
       <div class="col-10">
         <div class="card">
           <div class="card-body">
@@ -44,6 +49,7 @@
       </div>
     </div>
 
+    <!-- Forecast Weather Cards -->
     <div class="container-fluid mt-4">
       <h4 class="text-center">5-Day Forecast</h4>
       <div class="row justify-content-end">
@@ -109,29 +115,9 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
   </div>
 
   <script src="./assests/script.js"></script>
 </body>
 
 </html>
-
-
-<!-- Build Skelton HTML first -->
-
-<!-- body -->
-<!-- Nav or header -->
-
-<!-- Main Display (Atlant) Card -->
-
-<!-- Search for a city- Column/ Card with title, input and buttons -->
-
-<!-- 5 Day Forecast:  -->

@@ -1,14 +1,14 @@
+// global variables
 var cityNameEl = document.getElementById("cityName");
 var searchButtonEl = document.getElementById("searchButton");
-
 var citySearch = cityNameEl.value.trim();
-console.log(citySearch)
 
+// Search Button Event Listeners
 searchButtonEl.addEventListener('click', getWeather)
 searchButtonEl.addEventListener('click', saveCity)
 searchButtonEl.addEventListener('click', showResults)
 
-
+// Function to fetch lat and lon by open source weather API
 function getWeather() {
     var userSearch = cityNameEl.value.trim();
 
@@ -30,7 +30,7 @@ function getWeather() {
         })
 
 }
-
+// Function to fetch weather data from weather open source API
 function weatherToScreen(lat, lon, cityName) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=72ee85d5414d2d017cb185582d883b57&units=imperial")
         .then(function (res) {
@@ -38,7 +38,7 @@ function weatherToScreen(lat, lon, cityName) {
         })
         .then(function (data) {
             console.log(data);
-
+            // Display data to the screen
             data.daily.forEach(function weatherLoop(weather, i) {
                 document.querySelector("#city" + i).textContent = cityName + " (" + new Date(weather.dt * 1000).toLocaleDateString() + ")"
                 document.querySelector("#icon" + i).src = "https://openweathermap.org/img/w/" + weather.weather[0].icon + ".png"
